@@ -1,0 +1,18 @@
+body {
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCQk0Lp9bs59VeUBS5Sk2aIJr_jUdjOCXbTQ&usqp=CAU);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%; 
+    background-attachment: fixed;
+    color: white;
+    z-index: -1;
+    backdrop-filter: blur(4px);
+    text-align: center;
+    font-family: 'Amatic SC', cursive;
+    font-size: 25px;
+}
+
+h1{color: white; 
+    text-shadow: black 0.1em 0.1em 0.2em;
+    font-size: 100px;
+}

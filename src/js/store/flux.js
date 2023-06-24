@@ -1,45 +1,94 @@
+import { useState } from "react";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			people: [],
+			planets: [],
+			vehicles: [],
+			selectedPeople:{},
+			selectedPlanet:{},
+			selectedVehicle:{},
+			
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
-			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
+			
+			getDataPeople: async () => {
+				try{
+					const store = getStore()
+					const result = await fetch("https://www.swapi.tech/api/people/")
+					const data = await result.json()
 
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
+					const {getPeople} = getActions()
+					await getRealPeople(data)
 
-				//reset the global store
-				setStore({ demo: demo });
-			}
+					const resultado = data.results.map(((e)=>{
+						resultado.url
+					}))
+					
+					console.log("API respondió bien con obj personas", data)
+				}catch(error){
+					console.log("No se pudo recuperar obj personas ",error)
+				}
+			},
+
+			getDataPlanets: async () => {
+				try{
+					const store = getStore()
+					const result = await fetch("https://www.swapi.tech/api/planets/")
+					const data = await result.json()
+
+					
+					
+					console.log("API respondió bien con obj personas", data)
+				}catch(error){
+					console.log("No se pudo recuperar obj personas ",error)
+				}
+			},
+
+			getDataVehicles: async () => {
+				try{
+					const store = getStore()
+					const result = await fetch("https://www.swapi.tech/api/vehicles/")
+					const data = await result.json()
+
+					
+					
+					console.log("API respondió bien con obj personas", data)
+				}catch(error){
+					console.log("No se pudo recuperar obj personas ",error)
+				}
+			},
+
+			getRealPeople: async ({results}) =>{
+
+				const {fetchData} = getActions()
+				const fetchPromises = results.map(obj=> fetchData(obj.url,obj.id));
+				await Promises.all(fetchPromises);
+				
+			},
+
+			fetchData: async(url,id)=>{
+				try{
+					const response = await fetch(url);
+					const data = await response.json();
+
+					const store = getStore()
+					setStore({...store,people:[...store.people,data]})
+					console.log("Se cargaron los objetos de People")
+				}catch (error){
+					console.error(`Error al obtener los datos de los objetos personas:${error}`)
+
+				}
+			},
+			
+
+			
+
+			},
+
 		}
 	};
-};
+
 
 export default getState;
