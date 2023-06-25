@@ -33,14 +33,20 @@ h1{color: rgb(255, 179, 0);
 }
 
 h5{
+    font-size: 15px;
+    font-weight: bold;
+    color: rgb(255, 179, 0);
+}
+
+h2{
     font-size: 12px;
     font-weight: bold;
 }
-h2{
+
+span{
     font-size: 15px;
     color: rgb(255, 179, 0); 
 }
-
 .btn:hover{
     background-color: rgba(0, 0, 0, 0.204);
     color:rgb(255, 179, 0); 
@@ -55,6 +61,12 @@ h2{
 .card:hover{
     transform: scale(130%);
     z-index:1;
+    padding: 0;
+}
+img:hover,h1:hover{
+    transform: scale(70%);
+    transition: .5s;
+    margin: auto;
 }
 
 .lista{

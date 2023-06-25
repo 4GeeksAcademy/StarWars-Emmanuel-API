@@ -8,6 +8,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			planet: null,
 			vehicle: null,
 			favorites: [],
+			oneChar:[]
 
 		},
 		actions: {
@@ -72,6 +73,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}catch(error){
 					console.log("No se pudo recuperar obj personas ",error)
 				}
+			},
+			
+			getCharacter: (uid) => {
+				fetch(`https://www.swapi.tech/api/people/${uid}`)
+				.then (response => response.json())
+				.then ((response) => {
+					console.log(response.result.properties);
+					setStore({oneChar: response.result.properties})
+				})
 			},
 
 			setFavoritesCharacters: (char) => {

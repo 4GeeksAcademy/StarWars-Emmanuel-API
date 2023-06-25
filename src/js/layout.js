@@ -4,6 +4,7 @@ import ScrollToTop from "./component/scrollToTop";
 import styles from "/workspaces/Star-Wars-Blog-Emmanuel/src/styles/home.css"
 
 import  Home  from "./views/Home.jsx";
+import PeopleDetails from "./views/PeopleDetails.jsx";
 import  Selected  from "./views/Selected.jsx";
 import injectContext from "./store/appContext";
 
@@ -24,6 +25,7 @@ const Layout = () => {
 					<Routes>
 						<Route path="/" element={<Home />} />
 						<Route path="/home" element={<Home />} />
+						<Route path="/people-details" element={<PeopleDetails />} />
 						<Route path="/Selected" element={<Selected />} />
 						<Route path="*" element={<h1>Not found!</h1>} />
 					</Routes>
