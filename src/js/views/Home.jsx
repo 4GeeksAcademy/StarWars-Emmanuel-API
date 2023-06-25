@@ -23,7 +23,7 @@ const Home = () => {
 	<div className="text-center mx-auto ">
 <h1>Characters</h1>
 
-<div className="dropdown">
+<div className="dropend">
 				<button className="btn btn-warning dropdown-toggle  m-5" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 					Favorites {store.favorites.length}
 				</button>
