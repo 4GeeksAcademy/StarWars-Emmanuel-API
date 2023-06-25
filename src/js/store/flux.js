@@ -4,12 +4,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			people: [],
-			planets: [],
-			vehicles: [],
-			selectedPeople:{},
-			selectedPlanet:{},
-			selectedVehicle:{},
-			
+			char:[],
+			planet: null,
+			vehicle: null,
+			favorites: [],
+
 		},
 		actions: {
 			
@@ -18,19 +17,34 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const store = getStore()
 					const result = await fetch("https://www.swapi.tech/api/people/")
 					const data = await result.json()
-
-					const {getPeople} = getActions()
-					await getRealPeople(data)
-
-					const resultado = data.results.map(((e)=>{
-						resultado.url
-					}))
 					
+					setStore({people:data.results})
 					console.log("API respondió bien con obj personas", data)
 				}catch(error){
 					console.log("No se pudo recuperar obj personas ",error)
 				}
 			},
+			getDataPeopleDescription: async (url) => {
+				try{
+					const store = getStore();
+					const result = await fetch(url)
+					const data = await result.json()
+					
+					
+					setStore({ char: [...store.char, data.result.properties] });
+					console.log("API respondió bien con obj personas", data)
+				}catch(error){
+					console.log("No se pudo recuperar obj personas ",error)
+				}
+			},
+
+			charDescription: (url) => {
+				getActions().getDataPeopleDescription(url)
+			},
+
+
+			
+
 
 			getDataPlanets: async () => {
 				try{
@@ -60,29 +74,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			getRealPeople: async ({results}) =>{
-
-				const {fetchData} = getActions()
-				const fetchPromises = results.map(obj=> fetchData(obj.url,obj.id));
-				await Promises.all(fetchPromises);
-				
-			},
-
-			fetchData: async(url,id)=>{
-				try{
-					const response = await fetch(url);
-					const data = await response.json();
-
-					const store = getStore()
-					setStore({...store,people:[...store.people,data]})
-					console.log("Se cargaron los objetos de People")
-				}catch (error){
-					console.error(`Error al obtener los datos de los objetos personas:${error}`)
-
+			setFavoritesCharacters: (char) => {
+				const store = getStore()
+				const favoriteCharacterAlreadyExist = store.favorites.includes(char)
+				if (!favoriteCharacterAlreadyExist) {
+					setStore({favorites: [...store.favorites, char]})
 				}
 			},
-			
-
+			deleteFavorite: (index) => {
+				const store = getStore();
+				const updatedFavorites = [...store.favorites];
+				updatedFavorites.splice(index, 1);
+				setStore({ favorites: updatedFavorites });
+			  },
 			
 
 			},
