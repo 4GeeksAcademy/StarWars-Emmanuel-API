@@ -11,6 +11,21 @@ body {
     font-size: 12px;
     font-weight: bold;
 }
+.dropdown-menu{
+    background-color: rgba(0, 0, 0, 0.51);
+    border-radius: 20px;
+    transition: .5s;
+    backdrop-filter: blur(4px);
+    height: 100%;
+    width: 300px;
+    text-align: center;
+    overflow: scroll;
+}
+
+.bx:hover{
+    font-size: 30px;
+    transition: .5s;
+}
 
 h1{color: rgb(255, 179, 0); 
     text-shadow: black 0.1em 0.1em 0.2em;

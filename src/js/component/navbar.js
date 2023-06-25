@@ -13,18 +13,18 @@ export const Navbar = () => {
 				</span>
 			</Link>
 			<div className="dropdown">
-				<button className="btn btn-warning dropdown-toggle favoritos m-5" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+				<button className="btn btn-warning dropdown-toggle  m-5" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 					Favorites
 				</button>
-				<ul className="dropdown-menu">
+				<ul className="dropdown-menu mx-auto">
 					{
 						store.favorites.map((char, planet, vehicle, index, favorites)=> {
 							return (
-							<li key={index}>{char.name} {planet.name} {vehicle.name} <i className="fas fa-trash" onClick={()=>{
+							<li style={{color:"rgb(255, 179, 0"}}  key={index}><h2>{char.name} {planet.name} {vehicle.name} <box-icon type='solid' class='bx-lg  bx-tada-hover' color="orange" name='trash-alt'onClick={()=>{
 								actions.deleteFavorite(favorites)
 							}}
 							>
-							</i>
+							</box-icon></h2>
 							</li>
 							)
 						})
