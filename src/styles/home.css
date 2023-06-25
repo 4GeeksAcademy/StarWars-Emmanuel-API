@@ -30,6 +30,7 @@ body {
 h1{color: rgb(255, 179, 0); 
     text-shadow: black 0.1em 0.1em 0.2em;
     font-size: 100px;
+    transition: .5s;
 }
 
 h5{
@@ -59,14 +60,23 @@ span{
     backdrop-filter: blur(4px);
 }
 .card:hover{
+    transition: .5s;
     transform: scale(130%);
     z-index:1;
     padding: 0;
 }
-img:hover,h1:hover{
+img:hover,h1:hover,.card-body:hover{
     transform: scale(70%);
     transition: .5s;
     margin: auto;
+}
+
+img{
+    transition: .5s;
+}
+
+.card-body{
+    transition: .5s;
 }
 
 .lista{

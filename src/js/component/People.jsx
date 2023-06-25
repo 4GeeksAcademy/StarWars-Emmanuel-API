@@ -52,7 +52,7 @@ const People = (props) => {
 
     <button href="#" className="btn btn-warning m-3 " onClick={() => {
 									actions.setFavoritesCharacters(props.char)
-								}}  >♥</button>
+								}}  ><strong>♥</strong></button>
   </div>
 </div>
 
