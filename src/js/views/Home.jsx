@@ -14,8 +14,23 @@ const Home = () => {
 	
 	useEffect(()=>{
 		actions.getDataPeople()
+		
 	  },[]);
 
+	  useEffect(()=>{
+		
+		actions.getDataPlanets()
+		
+	  },[]);
+
+	  useEffect(()=>{
+		
+		actions.getDataVehicles()
+	  },[]);
+	  
+	  const handleDelete = (index) => {
+		actions.deleteFavorite(index);
+	  };
 	
 
 	
@@ -29,11 +44,9 @@ const Home = () => {
 				</button>
 				<ul className="dropdown-menu mx-auto">
 					{
-						store.favorites.map((char, planet, vehicle, index, favorites)=> {
+						store.favorites.map((favorite, index)=> {
 							return (
-							<li style={{color:"rgb(255, 179, 0"}}  key={index}><h2>{char.name} {planet.name} {vehicle.name} <box-icon type='solid' class='bx-lg  bx-tada-hover' color="orange" name='trash-alt'onClick={()=>{
-								actions.deleteFavorite(favorites)
-							}}
+							<li style={{color:"rgb(255, 179, 0"}}  key={index}><h2>{favorite.name} <box-icon type='solid' class='bx-lg  bx-tada-hover' color="orange" name='trash-alt'onClick={() => handleDelete(index)}
 							>
 							</box-icon></h2>
 							</li>
@@ -55,8 +68,28 @@ const Home = () => {
         ))}
       </div>
 
-		<Planets/>
-		<Vehicles/>
+	  
+	  <h1>Planets</h1>
+	  <div className="d-flex lista">
+        {store.planets.map((planet, index) => (
+		<Planets
+		key={index}
+		index={index}
+        planet={planet}
+		/>
+        ))}
+</div>
+
+		<h1>Star Ships</h1>
+		<div className="d-flex lista">
+        {store.vehicles.map((vehicle, index) => (
+		<Vehicles
+		key={index}
+		index={index}
+        vehicle={vehicle}
+		/>
+        ))}
+		</div>
 		
 	</div>
 );};

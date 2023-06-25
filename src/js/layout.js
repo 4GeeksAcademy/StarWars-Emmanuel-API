@@ -5,7 +5,7 @@ import styles from "/workspaces/Star-Wars-Blog-Emmanuel/src/styles/home.css"
 
 import  Home  from "./views/Home.jsx";
 import PeopleDetails from "./views/PeopleDetails.jsx";
-import  Selected  from "./views/Selected.jsx";
+// import  Selected  from "./views/Selected.jsx";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
@@ -26,7 +26,7 @@ const Layout = () => {
 						<Route path="/" element={<Home />} />
 						<Route path="/home" element={<Home />} />
 						<Route path="/people-details" element={<PeopleDetails />} />
-						<Route path="/Selected" element={<Selected />} />
+						{/* <Route path="/Selected" element={<Selected />} /> */}
 						<Route path="*" element={<h1>Not found!</h1>} />
 					</Routes>
 					<Footer />
