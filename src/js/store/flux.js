@@ -118,14 +118,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 
-			getCharacter: (uid) => {
-				fetch(`https://www.swapi.tech/api/people/${uid}`)
-				.then (response => response.json())
-				.then ((response) => {
-					console.log(response.result.properties);
-					setStore({oneChar: response.result.properties})
-				})
-			},
+			// getCharacter: (uid) => {
+			// 	fetch(`https://www.swapi.tech/api/people/${uid}`)
+			// 	.then (response => response.json())
+			// 	.then ((response) => {
+			// 		console.log(response.result.properties);
+			// 		setStore({oneChar: response.result.properties})
+			// 	})
+			// },
 
 			setFavoritesCharacters: (char) => {
 				const store = getStore()
@@ -153,6 +153,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const updatedFavorites = [...store.favorites];
 				updatedFavorites.splice(index, 1);
 				setStore({ favorites: updatedFavorites });
+			  },
+			  
+			  detailChar: (index) => {
+				const store = getStore();
+				const selected = [...store.people];
+				selected.splice(!index,1);
+				setStore({oneChar: selected });
 			  },
 			
 

@@ -23,7 +23,9 @@ const People = (props) => {
 
 
      
-      
+      const handleDetails = (index) => {
+		actions.detailChar(index);
+	  };
     
     
     return(
@@ -47,7 +49,7 @@ const People = (props) => {
             ""
           )}
 
-<Link to="/people-details/" className="btn btn-warning m-3">Details</Link>
+<Link to="/people-details/" onClick={() => handleDetails(props.index)} className="btn btn-warning m-3">Details</Link>
 
 
     <button href="#" className="btn btn-warning m-3 " onClick={() => {
