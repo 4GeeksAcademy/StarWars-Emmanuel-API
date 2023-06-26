@@ -11,6 +11,12 @@ body {
     font-size: 12px;
     font-weight: bold;
 }
+
+.placeholder-image {
+    background-image: url(https://c4.wallpaperflare.com/wallpaper/670/495/775/tv-show-the-mandalorian-baby-yoda-star-wars-the-mandalorian-tv-show-hd-wallpaper-preview.jpg);
+    
+  }
+
 .dropdown-menu{
     background-color: rgba(0, 0, 0, 0.51);
     border-radius: 20px;
