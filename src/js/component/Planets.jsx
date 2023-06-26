@@ -39,7 +39,7 @@ const Planets = (props) => {
         <div className="card  m-2"  
        style={{width:"18rem"}} key={props.index}>
         <img src={imageSource} onError={handleImageError} className="card-img-top" style={{height:"18rem",objectFit:"cover",borderRadius:"20px"}} alt="..."/>
-        <div className="card-body" style={{height:"13rem",overflow:"scroll"}}>
+        <div className="card-body" style={{height:"16rem",overflow:"scroll"}}>
         <h5 className="card-title"><span></span> {props.planet.name}</h5>
         {filteredPlanet[0] ? (
             <div>

@@ -37,7 +37,7 @@ const People = (props) => {
         <div className="card  m-2"  
        style={{width:"18rem"}} key={props.index}>
         <img src={`https://starwars-visualguide.com/assets/img/characters/${props.index +1}.jpg`} className="card-img-top" style={{height:"18rem",objectFit:"cover",borderRadius:"20px"}} alt="..."/>
-        <div className="card-body" style={{height:"13rem",overflow:"scroll"}}>
+        <div className="card-body" style={{height:"16rem",overflow:"scroll"}}>
         <h5 className="card-title"><span></span> {props.char.name}</h5>
         {filteredChars[0] ? (
             <div>

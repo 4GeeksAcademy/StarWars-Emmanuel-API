@@ -50,6 +50,12 @@ h2{
     font-weight: bold;
 }
 
+.card-title{
+    font-size: 30px;
+    font-weight: bold;
+    color: rgb(255, 179, 0);
+}
+
 span{
     font-size: 15px;
     color: rgb(255, 179, 0); 
