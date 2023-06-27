@@ -19,7 +19,7 @@ export const PeopleDetails = () => {
 			{JSON.stringify(store.oneChar) !== '{}' ?(
 			<div className="card text-start mx-auto"
 				style={{ width: "60%" }} key="index">
-				<img src={`https://starwars-visualguide.com/assets/img/characters/${store.oneChar.result.uid}.jpg`} className="card-img-top mx-auto mt-2" style={{ height: "18rem", objectFit: "cover", borderRadius: "20px",width: "50%" }} alt="..." />
+				<img src={`https://starwars-visualguide.com/assets/img/characters/${store.oneChar.result.uid}.jpg`} className="card-img-top mx-auto mt-2" style={{ height: "60%", objectFit: "cover", borderRadius: "20px",width: "50%" }} alt="..." />
 				<div className="card-body" style={{ height: "13rem", overflow: "scroll" }}>
 					<h5 className="card-title">Name: {store.oneChar.result.properties.name} </h5>
 
