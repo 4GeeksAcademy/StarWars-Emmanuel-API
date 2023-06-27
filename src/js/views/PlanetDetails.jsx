@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 
@@ -6,8 +6,13 @@ export const PlanetDetails = (planet) => {
 	
 	const { actions, store } = useContext(Context)
 
-	
+	const [imageSource, setImageSource] = useState(`https://starwars-visualguide.com/assets/img/planets/${store.onePlanet.result.uid}.jpg`);
 
+	function handleImageError() {
+		// Código para manejar el error de carga de la imagen
+		setImageSource("https://c4.wallpaperflare.com/wallpaper/670/495/775/tv-show-the-mandalorian-baby-yoda-star-wars-the-mandalorian-tv-show-hd-wallpaper-preview.jpg");
+	  }
+    
 
 	return (
 
@@ -19,7 +24,7 @@ export const PlanetDetails = (planet) => {
 			{JSON.stringify(store.onePlanet) !== '{}' ?(
 			<div className="card text-start mx-auto"
 				style={{ width: "60%" }} key="index">
-				<img src={`https://starwars-visualguide.com/assets/img/planets/${store.onePlanet.result.uid}.jpg`} className="card-img-top" style={{ height: "18rem", objectFit: "cover", borderRadius: "20px" }} alt="..." />
+				<img src={imageSource} onError={handleImageError} className="card-img-top" style={{ height: "18rem", objectFit: "cover", borderRadius: "20px" }} alt="..." />
 				<div className="card-body" style={{ height: "13rem", overflow: "scroll" }}>
 					<h5 className="card-title">Name: {store.onePlanet.result.properties.name} </h5>
 
