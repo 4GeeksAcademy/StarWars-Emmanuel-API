@@ -26,7 +26,7 @@ export const VehicleDetails = () => {
 
 			{JSON.stringify(store.oneVehicle) !== '{}' ?(
 			<div className="card text-start mx-auto"
-				style={{ width: "60%" }} key="index">
+				style={{ width: "80%" }} key="index">
 				<img src={imageSource} onError={handleImageError} className="card-img-top mx-auto mt-2" style={{ height: "18rem", objectFit: "cover", borderRadius: "20px",width: "65%" }} alt="..." />
 				<div className="card-body" style={{ height: "13rem", overflow: "scroll" }}>
 					<h5 className="card-title">Name: {store.oneVehicle.result.properties.name} </h5>
