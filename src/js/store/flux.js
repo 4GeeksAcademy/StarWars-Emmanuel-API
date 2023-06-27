@@ -188,7 +188,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			  },
 			  detailVehicle: (uid) => {
 				const store = getStore();
-				const selected = store.viehicle.find((e)=>e.result.uid === uid);
+				const selected = store.vehicle.find((e)=>e.result.uid === uid);
 				console.log("Esta es la info del char detail", selected );
 				setStore({...store, oneVehicle:selected });
 			  },

@@ -16,7 +16,7 @@ const navigate = useNavigate()
 
 
 
-	const [imageSource, setImageSource] = useState(`https://starwars-visualguide.com/assets/img/starships/${vehicle.result.uid + 4}.jpg`);
+	const [imageSource, setImageSource] = useState(`https://starwars-visualguide.com/assets/img/starships/${vehicle.result.uid}.jpg`);
  
 
     

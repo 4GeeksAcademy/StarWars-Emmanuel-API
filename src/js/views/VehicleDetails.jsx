@@ -19,7 +19,7 @@ export const VehicleDetails = (vehicle) => {
 			{JSON.stringify(store.oneVehicle) !== '{}' ?(
 			<div className="card text-start mx-auto"
 				style={{ width: "60%" }} key="index">
-				<img src={`https://starwars-visualguide.com/assets/img/starships/${store.oneVehicle.result.uid +4}.jpg`} className="card-img-top" style={{ height: "18rem", objectFit: "cover", borderRadius: "20px" }} alt="..." />
+				<img src={`https://starwars-visualguide.com/assets/img/starships/${store.oneVehicle.result.uid}.jpg`} className="card-img-top" style={{ height: "18rem", objectFit: "cover", borderRadius: "20px" }} alt="..." />
 				<div className="card-body" style={{ height: "13rem", overflow: "scroll" }}>
 					<h5 className="card-title">Name: {store.oneVehicle.result.properties.name} </h5>
 
