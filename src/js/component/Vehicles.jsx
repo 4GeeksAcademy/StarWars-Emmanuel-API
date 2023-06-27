@@ -1,6 +1,6 @@
 import React from 'react';
 import { Context } from '../store/appContext.js';
-import { useContext, useEffect } from 'react';
+import { useContext, useState } from 'react';
 
 import {  useNavigate } from 'react-router-dom';
 
@@ -10,13 +10,13 @@ import "../../styles/home.css";
 
 
 
-const Vehicles = ({char,index}) => {
+const Vehicles = ({vehicle}) => {
   const { store, actions } = useContext(Context);
 const navigate = useNavigate()
 
 
 
-	const [imageSource, setImageSource] = useState(`https://starwars-visualguide.com/assets/img/starships/${vehicle.result.uid +4}.jpg`);
+	const [imageSource, setImageSource] = useState(`https://starwars-visualguide.com/assets/img/starships/${vehicle.result.uid + 4}.jpg`);
  
 
     
@@ -29,8 +29,8 @@ const navigate = useNavigate()
      
            
     const handleDetails = (id) => {
-      actions.detailChar(id);
-      navigate("/people-details")
+      actions.detailVehicle(id);
+      navigate("/starships-details")
       };
       
     
@@ -42,25 +42,23 @@ const navigate = useNavigate()
     
        
         <div className="card  m-2"  
-       style={{width:"18rem"}} key={props.index}>
+       style={{width:"18rem"}} >
         <img src={imageSource} onError={handleImageError} className="card-img-top" style={{height:"18rem",objectFit:"cover",borderRadius:"20px"}} alt="..."/>
         <div className="card-body" style={{height:"16rem",overflow:"scroll"}}>
-        <h5 className="card-title"><span></span> {props.vehicle.name}</h5>
-        {filteredVehicles[0] ? (
+        <h5 className="card-title">{vehicle.result.properties.name}</h5>
+   
             <div>
-              <p className="card-text"><span>Model:</span>{filteredVehicles[0].model} </p>
-              <p className="card-text"><span>Manufacturer:</span>{filteredVehicles[0].manufacturer} </p>
-              <p className="card-text"><span>Passenger:</span> {filteredVehicles[0].passengers}</p>
+              <p className="card-text"><span>Model:</span>{vehicle.result.properties.model}</p>
+              <p className="card-text"><span>Manufacturer:</span>{vehicle.result.properties.manufacterer} </p>
+              <p className="card-text"><span>Passenger:</span>{vehicle.result.properties.passenger} </p>
             </div>
-          ) : (
-            ""
-          )}
+        
 
-<Link to="/people-details/" className="btn btn-warning m-3">Details</Link>
+            <button onClick={() => handleDetails(vehicle.result.uid)} className="btn btn-warning m-3">Details</button>
 
 
     <button href="#" className="btn btn-warning m-3 " onClick={() => {
-									actions.setFavoritesVehicles(props.vehicle)
+									actions.setFavoritesVehicles(vehicle)
 								}}  ><strong>♥</strong></button>
   </div>
 </div>

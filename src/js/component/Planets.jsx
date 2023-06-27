@@ -1,6 +1,6 @@
 import React from 'react';
 import { Context } from '../store/appContext.js';
-import { useContext, useEffect } from 'react';
+import { useContext, useState } from 'react';
 
 import {  useNavigate } from 'react-router-dom';
 
@@ -9,19 +9,19 @@ import "../../styles/home.css";
 
 
 
-const Planets = ({planet,index}) => {
+const Planets = ({planet}) => {
   const { store, actions } = useContext(Context);
 const navigate = useNavigate()
 
 
 
-	const [imageSource, setImageSource] = useState(`https://starwars-visualguide.com/assets/img/planets/${planets.result.uid}.jpg`);
+	const [imageSource, setImageSource] = useState(`https://starwars-visualguide.com/assets/img/planets/${planet.result.uid}.jpg`);
  
 
         
   const handleDetails = (id) => {
-		actions.detailChar(id);
-    navigate("/people-details")
+		actions.detailPlanet(id);
+    navigate("/planet-details")
 	  };
     
 
@@ -40,24 +40,22 @@ const navigate = useNavigate()
     
        
         <div className="card  m-2"  
-       style={{width:"18rem"}} key={props.index}>
+       style={{width:"18rem"}}>
         <img src={imageSource} onError={handleImageError} className="card-img-top" style={{height:"18rem",objectFit:"cover",borderRadius:"20px"}} alt="..."/>
         <div className="card-body" style={{height:"16rem",overflow:"scroll"}}>
-        <h5 className="card-title"><span></span> {props.planet.name}</h5>
-        {filteredPlanet[0] ? (
+        <h5 className="card-title"> {planet.result.properties.name}</h5>
+       
             <div>
-              <p className="card-text"><span>Population:</span>{filteredPlanet[0].population} </p>
-              <p className="card-text"><span>Terrain:</span>{filteredPlanet[0].terrain} </p>
+              <p className="card-text"><span>Population:</span> {planet.result.properties.population}</p>
+              <p className="card-text"><span>Terrain:</span>{planet.result.properties.terrain} </p>
             </div>
-          ) : (
-            ""
-          )}
+         
 
-<Link to="/people-details/" className="btn btn-warning m-3">Details</Link>
+<button onClick={() => handleDetails(planet.result.uid)} className="btn btn-warning m-3">Details</button>
 
 
     <button href="#" className="btn btn-warning m-3 " onClick={() => {
-									actions.setFavoritesPlanets(props.planet)
+									actions.setFavoritesPlanets(planet)
 								}}  ><strong>♥</strong></button>
   </div>
 </div>

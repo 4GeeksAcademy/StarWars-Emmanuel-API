@@ -1,6 +1,6 @@
 import React from 'react';
 import { Context } from '../store/appContext.js';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 
 import {  useNavigate } from 'react-router-dom';
 
@@ -9,7 +9,7 @@ import "../../styles/home.css";
 
 
 
-const People = ({char,index}) => {
+const People = ({char}) => {
     const { store, actions } = useContext(Context);
   const navigate = useNavigate()
 
@@ -32,7 +32,7 @@ const People = ({char,index}) => {
        style={{width:"18rem"}} >
         <img src={`https://starwars-visualguide.com/assets/img/characters/${char.result.uid}.jpg`} className="card-img-top" style={{height:"18rem",objectFit:"cover",borderRadius:"20px"}} alt="..."/>
         <div className="card-body" style={{height:"16rem",overflow:"scroll"}}>
-        <h5 className="card-title"><span></span> {char.result.properties.name}</h5>
+        <h5 className="card-title"> {char.result.properties.name}</h5>
         
             <div>
               <p className="card-text"><span>Gender:</span>{char.result.properties.gender} </p>

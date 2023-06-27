@@ -11,7 +11,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			vehicle: [],
 			favorites: [],
 
-			oneChar:{}
+			oneChar:{},
+			oneVehicle:{},
+			onePlanet:{},
 
 		},
 		actions: {
@@ -120,7 +122,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try{
 					const {getDataVehiclesDescription} = getActions()
 					const store = getStore()
-					const pedidos = await store.people.map((e)=>getDataVehiclesDescription(e.url))
+					const pedidos = await store.vehicles.map((e)=>getDataVehiclesDescription(e.url))
 					await Promise.all(pedidos);
 				}catch(error){
 					console.log(" ",error)
@@ -178,8 +180,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log("Esta es la info del char detail", selected );
 				setStore({...store, oneChar:selected });
 			  },
-			
-
+			  detailPlanet: (uid) => {
+				const store = getStore();
+				const selected = store.planet.find((e)=>e.result.uid === uid);
+				console.log("Esta es la info del char detail", selected );
+				setStore({...store, onePlanet:selected });
+			  },
+			  detailVehicle: (uid) => {
+				const store = getStore();
+				const selected = store.viehicle.find((e)=>e.result.uid === uid);
+				console.log("Esta es la info del char detail", selected );
+				setStore({...store, oneVehicle:selected });
+			  },
 			},
 
 		}
