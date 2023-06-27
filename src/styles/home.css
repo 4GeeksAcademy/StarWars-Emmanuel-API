@@ -22,7 +22,7 @@ body {
     border-radius: 20px;
     transition: .5s;
     backdrop-filter: blur(4px);
-    height: 100%;
+    height: 200%;
     width: 300px;
     text-align: center;
     overflow: scroll;
@@ -31,6 +31,12 @@ body {
 .bx:hover{
     font-size: 30px;
     transition: .5s;
+    cursor: pointer;
+}
+
+.bx-lg:hover{
+    
+    cursor: pointer;
 }
 
 h1{color: rgb(255, 179, 0); 

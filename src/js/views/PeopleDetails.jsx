@@ -29,7 +29,7 @@ export const PeopleDetails = (char) => {
 							<p className="col "><i color="orange" className='bx-pull-left bx bx-tada-hover bxs-quote-alt-left bx-lg' />Din Grogu es un personaje ficticio de la serie de televisión original The Mandalorian, parte de la franquicia Star Wars. Es miembro de la misma especie que Yoda y de Yaddle, con quienes comparte una fuerte habilidad en la Fuerza.</p>
 							<div className="row">
 								<h5 className="col ">Eye color:</h5>
-								<p className="col ">{store.oneChar.result.properties.name}</p>
+								<p className="col ">{store.oneChar.result.properties.eye_color}</p>
 								<h5 className="col ">Hair color:</h5>
 								<p className="col ">{store.oneChar.result.properties.hair_color}</p>
 								<h5 className="col ">Gender:</h5>

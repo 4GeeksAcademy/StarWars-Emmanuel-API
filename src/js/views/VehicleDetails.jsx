@@ -36,16 +36,16 @@ export const VehicleDetails = (vehicle) => {
 							<h5 className="row ">Description:</h5>
 							<p className="col "><i color="orange" className='bx-pull-left bx bx-tada-hover bxs-quote-alt-left bx-lg' />Din Grogu es un personaje ficticio de la serie de televisión original The Mandalorian, parte de la franquicia Star Wars. Es miembro de la misma especie que Yoda y de Yaddle, con quienes comparte una fuerte habilidad en la Fuerza.</p>
 							<div className="row">
-								<h5 className="col ">Eye color:</h5>
-								<p className="col ">{store.oneVehicle.result.properties.name}</p>
-								<h5 className="col ">Hair color:</h5>
-								<p className="col ">{store.oneVehicle.result.properties.hair_color}</p>
-								<h5 className="col ">Gender:</h5>
-								<p className="col ">{store.oneVehicle.result.properties.gender}</p>
-								<h5 className="col ">Height:</h5>
-								<p className="col ">{store.oneVehicle.result.properties.height}</p>
-								<h5 className="col ">Birth year:</h5>
-								<p className="col ">{store.oneVehicle.result.properties.birth_year}</p>
+								<h5 className="col ">Model:</h5>
+								<p className="col ">{store.oneVehicle.result.properties.model}</p>
+								<h5 className="col ">Manufacturer:</h5>
+								<p className="col ">{store.oneVehicle.result.properties.manufacturer}</p>
+								<h5 className="col ">Passengers:</h5>
+								<p className="col ">{store.oneVehicle.result.properties.passengers}</p>
+								<h5 className="col ">Max speed:</h5>
+								<p className="col ">{store.oneVehicle.result.properties.max_atmosphering_speed}</p>
+								<h5 className="col ">Class:</h5>
+								<p className="col ">{store.oneVehicle.result.properties.starship_class}</p>
 							</div>
 						</div>
 

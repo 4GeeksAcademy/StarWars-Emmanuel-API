@@ -49,8 +49,8 @@ const navigate = useNavigate()
    
             <div>
               <p className="card-text"><span>Model:</span>{vehicle.result.properties.model}</p>
-              <p className="card-text"><span>Manufacturer:</span>{vehicle.result.properties.manufacterer} </p>
-              <p className="card-text"><span>Passenger:</span>{vehicle.result.properties.passenger} </p>
+              <p className="card-text"><span>Manufacturer:</span>{vehicle.result.properties.manufacturer} </p>
+              <p className="card-text"><span>Passengers:</span>{vehicle.result.properties.passengers} </p>
             </div>
         
 
