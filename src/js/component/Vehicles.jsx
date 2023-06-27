@@ -1,27 +1,25 @@
 import React from 'react';
 import { Context } from '../store/appContext.js';
-import { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useContext, useEffect } from 'react';
+
+import {  useNavigate } from 'react-router-dom';
 
 
 import "../../styles/home.css";
 
 
-const Vehicles = (props) => {
-    const { store, actions } = useContext(Context);
-	const [imageSource, setImageSource] = useState(`https://starwars-visualguide.com/assets/img/starships/${props.index +4}.jpg`);
+
+
+const Vehicles = ({char,index}) => {
+  const { store, actions } = useContext(Context);
+const navigate = useNavigate()
+
+
+
+	const [imageSource, setImageSource] = useState(`https://starwars-visualguide.com/assets/img/starships/${vehicle.result.uid +4}.jpg`);
  
 
-    const filteredVehicles = store.vehicle.filter(
-      (vehicle) => vehicle.name == props.vehicle.name
-    );
-
-  
-    useEffect(()=>{
-      actions.vehicleDescription(props.vehicle.url)
-      
-    },[]);
-
+    
 	function handleImageError() {
 		// Código para manejar el error de carga de la imagen
 		setImageSource("https://c4.wallpaperflare.com/wallpaper/670/495/775/tv-show-the-mandalorian-baby-yoda-star-wars-the-mandalorian-tv-show-hd-wallpaper-preview.jpg");
@@ -29,6 +27,11 @@ const Vehicles = (props) => {
 
 
      
+           
+    const handleDetails = (id) => {
+      actions.detailChar(id);
+      navigate("/people-details")
+      };
       
     
     

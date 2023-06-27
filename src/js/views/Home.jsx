@@ -13,20 +13,14 @@ const Home = () => {
 	const { actions,store } = useContext(Context)
 	
 	useEffect(()=>{
-		actions.getDataPeople()
+		actions.getDataPeople();
+		actions.getDataPlanets();
+		actions.getDataVehicles();
 		
 	  },[]);
 
-	  useEffect(()=>{
-		
-		actions.getDataPlanets()
-		
-	  },[]);
 
-	  useEffect(()=>{
-		
-		actions.getDataVehicles()
-	  },[]);
+
 	  
 	  const handleDelete = (index) => {
 		actions.deleteFavorite(index);
@@ -36,7 +30,7 @@ const Home = () => {
 	
 	return(
 	<div className="text-center mx-auto ">
-<h1>Characters</h1>
+
 
 <div className="dropend">
 				<button className="btn btn-warning dropdown-toggle  m-5" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -45,8 +39,10 @@ const Home = () => {
 				<ul className="dropdown-menu mx-auto">
 					{
 						store.favorites.map((favorite, index)=> {
+							
 							return (
-							<li style={{color:"rgb(255, 179, 0"}}  key={index}><h2>{favorite.name} <box-icon type='solid' class='bx-lg  bx-tada-hover' color="orange" name='trash-alt'onClick={() => handleDelete(index)}
+								
+							<li style={{color:"rgb(255, 179, 0"}}  key={index}><h2>{favorite} <box-icon type='solid' class='bx-lg  bx-tada-hover' color="orange" name='trash-alt'onClick={() => handleDelete(index)}
 							>
 							</box-icon></h2>
 							</li>
@@ -56,10 +52,10 @@ const Home = () => {
 				</ul>
 			</div>
 
-
+			<h1>Characters</h1>
 
 <div className="d-flex lista">
-        {store.people.map((char, index) => (
+        {store.char.map((char, index) => (
 		<People
 		key={index}
 		index={index}
@@ -71,7 +67,7 @@ const Home = () => {
 	  
 	  <h1>Planets</h1>
 	  <div className="d-flex lista">
-        {store.planets.map((planet, index) => (
+        {store.planet.map((planet, index) => (
 		<Planets
 		key={index}
 		index={index}
@@ -82,7 +78,7 @@ const Home = () => {
 
 		<h1>Star Ships</h1>
 		<div className="d-flex lista">
-        {store.vehicles.map((vehicle, index) => (
+        {store.vehicle.map((vehicle, index) => (
 		<Vehicles
 		key={index}
 		index={index}

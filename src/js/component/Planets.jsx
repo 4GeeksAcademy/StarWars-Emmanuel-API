@@ -1,26 +1,29 @@
 import React from 'react';
 import { Context } from '../store/appContext.js';
-import { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useContext, useEffect } from 'react';
+
+import {  useNavigate } from 'react-router-dom';
 
 
 import "../../styles/home.css";
 
 
-const Planets = (props) => {
-    const { store, actions } = useContext(Context);
-	const [imageSource, setImageSource] = useState(`https://starwars-visualguide.com/assets/img/planets/${props.index +1}.jpg`);
+
+const Planets = ({planet,index}) => {
+  const { store, actions } = useContext(Context);
+const navigate = useNavigate()
+
+
+
+	const [imageSource, setImageSource] = useState(`https://starwars-visualguide.com/assets/img/planets/${planets.result.uid}.jpg`);
  
 
-    const filteredPlanet = store.planet.filter(
-      (planet) => planet.name == props.planet.name
-    );
-
-  
-    useEffect(()=>{
-      actions.planetDescription(props.planet.url)
-      
-    },[]);
+        
+  const handleDetails = (id) => {
+		actions.detailChar(id);
+    navigate("/people-details")
+	  };
+    
 
 
      

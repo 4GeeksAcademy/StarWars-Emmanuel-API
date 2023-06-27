@@ -11,7 +11,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			vehicle: [],
 			favorites: [],
 
-			oneChar:[]
+			oneChar:{}
 
 		},
 		actions: {
@@ -22,29 +22,40 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const result = await fetch("https://www.swapi.tech/api/people/")
 					const data = await result.json()
 					
-					setStore({people:data.results})
-					console.log("API respondió bien con obj personas", data)
+					setStore({...store, people:data.results})
+					console.log("API respondió bien con primera lista de url", data)
+					const {mappingFetch} = getActions()
+					await mappingFetch()
 				}catch(error){
-					console.log("No se pudo recuperar obj personas ",error)
+					console.log("No se pudo recuperar lista de urls ",error)
 				}
 			},
+
+			mappingFetch: async () => {
+				try{
+					const {getDataPeopleDescription} = getActions()
+					const store = getStore()
+					const pedidos = await store.people.map((e)=>getDataPeopleDescription(e.url))
+					await Promise.all(pedidos);
+				}catch(error){
+					console.log(" ",error)
+				}
+			},
+
 			getDataPeopleDescription: async (url) => {
 				try{
+					
 					const store = getStore();
 					const result = await fetch(url)
 					const data = await result.json()
-					
-					
-					setStore({ char: [...store.char, data.result.properties] });
+					setStore({ ...store,char: [...store.char, data] });
 					console.log("API respondió bien con obj personas", data)
 				}catch(error){
 					console.log("No se pudo recuperar obj personas ",error)
 				}
 			},
 
-			charDescription: (url) => {
-				getActions().getDataPeopleDescription(url)
-			},
+			
 
 
 			
@@ -56,30 +67,39 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const result = await fetch("https://www.swapi.tech/api/planets/")
 					const data = await result.json()
 					
-					setStore({planets:data.results})
-					console.log("API respondió bien con obj personas", data)
+					setStore({...store, planets:data.results})
+					console.log("API respondió bien con primera lista de url", data)
+					const {mappingFetchPlanets} = getActions()
+					await mappingFetchPlanets()
 				}catch(error){
-					console.log("No se pudo recuperar obj personas ",error)
+					console.log("No se pudo recuperar lista de urls ",error)
 				}
-			
 			},
+
+			mappingFetchPlanets: async () => {
+				try{
+					const {getDataPlanetsDescription} = getActions()
+					const store = getStore()
+					const pedidos = await store.planets.map((e)=>getDataPlanetsDescription(e.url))
+					await Promise.all(pedidos);
+				}catch(error){
+					console.log(" ",error)
+				}
+			},
+
 			getDataPlanetsDescription: async (url) => {
 				try{
+					
 					const store = getStore();
 					const result = await fetch(url)
 					const data = await result.json()
-					
-					
-					setStore({ planet: [...store.planet, data.result.properties] });
+					setStore({ ...store,planet: [...store.planet, data] });
 					console.log("API respondió bien con obj personas", data)
 				}catch(error){
 					console.log("No se pudo recuperar obj personas ",error)
 				}
 			},
 
-			planetDescription: (url) => {
-				getActions().getDataPlanetsDescription(url)
-			},
 
 			getDataVehicles: async () => {
 				try{
@@ -87,65 +107,62 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const result = await fetch("https://www.swapi.tech/api/starships/")
 					const data = await result.json()
 					
-					setStore({vehicles:data.results})
-					console.log("API respondió bien con obj personas", data)
+					setStore({...store, vehicles:data.results})
+					console.log("API respondió bien con primera lista de url", data)
+					const {mappingFetchVehicles} = getActions()
+					await mappingFetchVehicles()
 				}catch(error){
-					console.log("No se pudo recuperar obj personas ",error)
+					console.log("No se pudo recuperar lista de urls ",error)
 				}
-			
 			},
+
+			mappingFetchVehicles: async () => {
+				try{
+					const {getDataVehiclesDescription} = getActions()
+					const store = getStore()
+					const pedidos = await store.people.map((e)=>getDataVehiclesDescription(e.url))
+					await Promise.all(pedidos);
+				}catch(error){
+					console.log(" ",error)
+				}
+			},
+
 			getDataVehiclesDescription: async (url) => {
 				try{
+					
 					const store = getStore();
 					const result = await fetch(url)
 					const data = await result.json()
-					
-					
-					setStore({ vehicle: [...store.vehicle, data.result.properties] });
+					setStore({ ...store,vehicle: [...store.vehicle, data] });
 					console.log("API respondió bien con obj personas", data)
 				}catch(error){
 					console.log("No se pudo recuperar obj personas ",error)
 				}
 			},
 
-			vehicleDescription: (url) => {
-				getActions().getDataVehiclesDescription(url)
-			},
+
+
 			
-
-
-
-
-
-
-			// getCharacter: (uid) => {
-			// 	fetch(`https://www.swapi.tech/api/people/${uid}`)
-			// 	.then (response => response.json())
-			// 	.then ((response) => {
-			// 		console.log(response.result.properties);
-			// 		setStore({oneChar: response.result.properties})
-			// 	})
-			// },
 
 			setFavoritesCharacters: (char) => {
 				const store = getStore()
-				const favoriteCharacterAlreadyExist = store.favorites.includes(char)
+				const favoriteCharacterAlreadyExist = store.favorites.includes(char.result.properties.name)
 				if (!favoriteCharacterAlreadyExist) {
-					setStore({favorites: [...store.favorites, char]})
+					setStore({favorites: [...store.favorites, char.result.properties.name]})
 				}
 			},
 			setFavoritesPlanets: (planet) => {
 				const store = getStore()
-				const favoritePlanetAlreadyExist = store.favorites.includes(planet)
+				const favoritePlanetAlreadyExist = store.favorites.includes(planet.result.properties.name)
 				if (!favoritePlanetAlreadyExist) {
-					setStore({favorites: [...store.favorites, planet]})
+					setStore({favorites: [...store.favorites, planet.result.properties.name]})
 				}
 			},
 			setFavoritesVehicles: (vehicle) => {
 				const store = getStore()
-				const favoriteVehicleAlreadyExist = store.favorites.includes(vehicle)
+				const favoriteVehicleAlreadyExist = store.favorites.includes(vehicle.result.properties.name)
 				if (!favoriteVehicleAlreadyExist) {
-					setStore({favorites: [...store.favorites, vehicle]})
+					setStore({favorites: [...store.favorites, vehicle.result.properties.name]})
 				}
 			},
 			deleteFavorite: (index) => {
@@ -155,11 +172,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ favorites: updatedFavorites });
 			  },
 			  
-			  detailChar: (index) => {
+			  detailChar: (uid) => {
 				const store = getStore();
-				const selected = [...store.people];
-				selected.splice(!index,1);
-				setStore({oneChar: selected });
+				const selected = store.char.find((e)=>e.result.uid === uid);
+				console.log("Esta es la info del char detail", selected );
+				setStore({...store, oneChar:selected });
 			  },
 			
 

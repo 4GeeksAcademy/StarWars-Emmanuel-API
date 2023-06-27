@@ -1,30 +1,24 @@
 import React from 'react';
 import { Context } from '../store/appContext.js';
 import { useContext, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+
+import {  useNavigate } from 'react-router-dom';
 
 
 import "../../styles/home.css";
 
 
-const People = (props) => {
+
+const People = ({char,index}) => {
     const { store, actions } = useContext(Context);
- 
+  const navigate = useNavigate()
 
-    const filteredChars = store.char.filter(
-      (char) => char.name == props.char.name
-    );
-
-  
-    useEffect(()=>{
-      actions.charDescription(props.char.url)
-      
-    },[]);
 
 
      
-      const handleDetails = (index) => {
-		actions.detailChar(index);
+      const handleDetails = (id) => {
+		actions.detailChar(id);
+    navigate("/people-details")
 	  };
     
     
@@ -35,28 +29,28 @@ const People = (props) => {
     
        
         <div className="card  m-2"  
-       style={{width:"18rem"}} key={props.index}>
-        <img src={`https://starwars-visualguide.com/assets/img/characters/${props.index +1}.jpg`} className="card-img-top" style={{height:"18rem",objectFit:"cover",borderRadius:"20px"}} alt="..."/>
+       style={{width:"18rem"}} >
+        <img src={`https://starwars-visualguide.com/assets/img/characters/${char.result.uid}.jpg`} className="card-img-top" style={{height:"18rem",objectFit:"cover",borderRadius:"20px"}} alt="..."/>
         <div className="card-body" style={{height:"16rem",overflow:"scroll"}}>
-        <h5 className="card-title"><span></span> {props.char.name}</h5>
-        {filteredChars[0] ? (
+        <h5 className="card-title"><span></span> {char.result.properties.name}</h5>
+        
             <div>
-              <p className="card-text"><span>Gender:</span>{filteredChars[0].gender} </p>
-              <p className="card-text"><span>Hair color:</span>{filteredChars[0].hair_color} </p>
-              <p className="card-text"><span>Birth Year:</span> {filteredChars[0].birth_year}</p>
+              <p className="card-text"><span>Gender:</span>{char.result.properties.gender} </p>
+              <p className="card-text"><span>Hair color:</span>{char.result.properties.hair_color} </p>
+              <p className="card-text"><span>Birth Year:</span> {char.result.properties.birth_year}</p>
             </div>
-          ) : (
-            ""
-          )}
+          
+      
 
-<Link to="/people-details/" onClick={() => handleDetails(props.index)} className="btn btn-warning m-3">Details</Link>
+<button onClick={() => handleDetails(char.result.uid)} className="btn btn-warning m-3">Details</button>
 
 
     <button href="#" className="btn btn-warning m-3 " onClick={() => {
-									actions.setFavoritesCharacters(props.char)
+									actions.setFavoritesCharacters(char)
 								}}  ><strong>♥</strong></button>
   </div>
 </div>
+
 
 
 
