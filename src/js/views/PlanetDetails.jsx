@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 
-export const PlanetDetails = (planet) => {
+export const PlanetDetails = () => {
 	
 	const { actions, store } = useContext(Context)
 
@@ -24,14 +24,14 @@ export const PlanetDetails = (planet) => {
 			{JSON.stringify(store.onePlanet) !== '{}' ?(
 			<div className="card text-start mx-auto"
 				style={{ width: "60%" }} key="index">
-				<img src={imageSource} onError={handleImageError} className="card-img-top" style={{ height: "18rem", objectFit: "cover", borderRadius: "20px" }} alt="..." />
+				<img src={imageSource} onError={handleImageError} className="card-img-top mx-auto mt-2" style={{ height: "18rem", objectFit: "cover", borderRadius: "20px",width: "65%" }} alt="..." />
 				<div className="card-body" style={{ height: "13rem", overflow: "scroll" }}>
 					<h5 className="card-title">Name: {store.onePlanet.result.properties.name} </h5>
 
 					<div className="row">
 						<div className="col-12 mx-auto">
 							<h5 className="row ">Description:</h5>
-							<p className="col "><i color="orange" className='bx-pull-left bx bx-tada-hover bxs-quote-alt-left bx-lg' />Din Grogu es un personaje ficticio de la serie de televisión original The Mandalorian, parte de la franquicia Star Wars. Es miembro de la misma especie que Yoda y de Yaddle, con quienes comparte una fuerte habilidad en la Fuerza.</p>
+							<p className="col "><i color="orange" className='bx-pull-left bx bx-tada-hover bxs-quote-alt-left bx-lg' />La galaxia ficticia en la que tienen lugar los acontecimientos de Star Wars está formada por varias regiones, que a su vez se subdividen en sectores y sistemas, con numerosos planetas y satélites como Bespin, Dagobah, Utapau o Yavin.</p>
 							<div className="row">
 								<h5 className="col ">Population:</h5>
 								<p className="col ">{store.onePlanet.result.properties.population}</p>
@@ -39,10 +39,9 @@ export const PlanetDetails = (planet) => {
 								<p className="col ">{store.onePlanet.result.properties.terrain}</p>
 								<h5 className="col ">Diameter:</h5>
 								<p className="col ">{store.onePlanet.result.properties.diameter}</p>
-								<h5 className="col ">Climate:</h5>
-								<p className="col ">{store.onePlanet.result.properties.climate}</p>
-								<h5 className="col ">Temperate:</h5>
-								<p className="col ">{store.onePlanet.result.properties.temperate}</p>
+								<h5 className="col ">Orbital period:</h5>
+								<p className="col ">{store.onePlanet.result.properties.orbital_period}</p>
+								
 							</div>
 						</div>
 
