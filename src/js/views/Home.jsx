@@ -7,7 +7,6 @@ import { Context } from '../store/appContext.js';
 
 import "../../styles/home.css";
 
-
 const Home = () => {
 
 	const { actions,store } = useContext(Context)

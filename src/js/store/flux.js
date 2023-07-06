@@ -3,6 +3,7 @@ import { useState } from "react";
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+			
 			people: [],
 			planets:[],
 			vehicles:[],
@@ -10,7 +11,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			planet: [],
 			vehicle: [],
 			favorites: [],
-
 			oneChar:{},
 			oneVehicle:{},
 			onePlanet:{},
@@ -21,13 +21,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getDataPeople: async () => {
 				try{
 					const store = getStore()
-					const result = await fetch("https://www.swapi.tech/api/people/")
+					const result = await fetch("https://www.swapi.tech/api/people?page=1&limit=20")
 					const data = await result.json()
 					
 					setStore({...store, people:data.results})
 					console.log("API respondió bien con primera lista de url", data)
-					const {mappingFetch} = getActions()
-					await mappingFetch()
+					const actions = getActions()
+					await actions.mappingFetch()
 				}catch(error){
 					console.log("No se pudo recuperar lista de urls ",error)
 				}
@@ -66,7 +66,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getDataPlanets: async () => {
 				try{
 					const store = getStore()
-					const result = await fetch("https://www.swapi.tech/api/planets/")
+					const result = await fetch("https://www.swapi.tech/api/planets?page=1&limit=20")
 					const data = await result.json()
 					
 					setStore({...store, planets:data.results})
@@ -106,7 +106,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getDataVehicles: async () => {
 				try{
 					const store = getStore()
-					const result = await fetch("https://www.swapi.tech/api/starships/")
+					const result = await fetch("https://www.swapi.tech/api/starships?page=1&limit=20")
 					const data = await result.json()
 					
 					setStore({...store, vehicles:data.results})
@@ -180,12 +180,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log("Esta es la info del char detail", selected );
 				setStore({...store, oneChar:selected });
 			  },
+
 			  detailPlanet: (uid) => {
 				const store = getStore();
 				const selected = store.planet.find((e)=>e.result.uid === uid);
 				console.log("Esta es la info del char detail", selected );
 				setStore({...store, onePlanet:selected });
 			  },
+
 			  detailVehicle: (uid) => {
 				const store = getStore();
 				const selected = store.vehicle.find((e)=>e.result.uid === uid);
