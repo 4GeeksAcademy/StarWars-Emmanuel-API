@@ -11,7 +11,7 @@ import "../../styles/home.css";
 
 
 const Vehicles = ({vehicle}) => {
-  const { store, actions } = useContext(Context);
+  const {  actions } = useContext(Context);
 const navigate = useNavigate()
 
 

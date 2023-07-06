@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 export const VehicleDetails = () => {
 	
-	const { actions, store } = useContext(Context)
+	const { store } = useContext(Context)
 
 	
 	const [imageSource, setImageSource] = useState(`https://starwars-visualguide.com/assets/img/starships/${store.oneVehicle.result.uid}.jpg`);
@@ -32,7 +32,7 @@ export const VehicleDetails = () => {
 					<h5 className="card-title">Name: {store.oneVehicle.result.properties.name} </h5>
 
 					<div className="row">
-						<div className="col-12 mx-auto">
+						<div className="col-12 mx-auto">z
 							<h5 className="row ">Description:</h5>
 							<p className="col "><i color="orange" className='bx-pull-left bx bx-tada-hover bxs-quote-alt-left bx-lg' /> Estas son 10 de las naves y vehículos mejor diseñados de la franquicia galáctica más popular de todos los tiempos.</p>
 							<div className="row">

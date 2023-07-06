@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 // import styles from "/workspaces/Star-Wars-Blog-Emmanuel/src/styles/home.css"
-import styles from "../styles/home.css"
+
 import  Home  from "./views/Home.jsx";
 import PeopleDetails from "./views/PeopleDetails.jsx";
 import PlanetDetails from "./views/PlanetDetails.jsx";

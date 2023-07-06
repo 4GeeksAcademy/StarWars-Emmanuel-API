@@ -10,7 +10,7 @@ import "../../styles/home.css";
 
 
 const People = ({char}) => {
-    const { store, actions } = useContext(Context);
+    const { actions } = useContext(Context);
   const navigate = useNavigate()
 
 

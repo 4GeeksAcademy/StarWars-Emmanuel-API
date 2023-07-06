@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 export const PlanetDetails = () => {
 	
-	const { actions, store } = useContext(Context)
+	const {  store } = useContext(Context)
 
 	const [imageSource, setImageSource] = useState(`https://starwars-visualguide.com/assets/img/planets/${store.onePlanet.result.uid}.jpg`);
 
