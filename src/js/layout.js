@@ -8,10 +8,10 @@ import PeopleDetails from "./views/PeopleDetails.jsx";
 import PlanetDetails from "./views/PlanetDetails.jsx";
 import VehicleDetails from "./views/VehicleDetails.jsx";
 import injectContext from "./store/appContext";
-
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
-
+import Login from "./views/Login.jsx";
+import Signup from "./views/Signup.jsx";
 
 const Layout = () => {
 	
@@ -23,13 +23,14 @@ const Layout = () => {
 				<ScrollToTop>
 					<Navbar />
 					<Routes>
-						<Route path="/" element={<Home />} />
+						<Route path="/" element={<Login />} />
 						<Route path="/home" element={<Home />} />
 						<Route path="/people-details" element={<PeopleDetails />} />
+						<Route path="/login" element={<Login />} />
+						<Route path="/Signup" element={<Signup />} />
 						<Route path="/planet-details" element={<PlanetDetails />} />
 						<Route path="/starships-details" element={<VehicleDetails />} />
-
-						<Route path="*" element={<h1>Not found!</h1>} />
+						<Route path="*" element={<Login />} />
 					</Routes>
 					<Footer />
 				</ScrollToTop>

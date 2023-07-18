@@ -20,6 +20,16 @@ const Home = () => {
 
 
 
+	
+//   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+//   useEffect(() => {
+//     const myToken = localStorage.getItem("myToken");
+//     const userLoggedIn = !!myToken;
+//     setIsLoggedIn(userLoggedIn);
+//   }, []);
+
+
 	  
 	  const handleDelete = (index) => {
 		actions.deleteFavorite(index);

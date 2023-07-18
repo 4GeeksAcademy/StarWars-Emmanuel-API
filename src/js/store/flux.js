@@ -1,25 +1,87 @@
 const getState = ({ getStore, getActions, setStore }) => {
-	return {
-		store: {
-			
-			people: [],
-			planets:[],
-			vehicles:[],
-			char:[],
-			planet: [],
-			vehicle: [],
-			favorites: [],
-			oneChar:{},
-			oneVehicle:{},
-			onePlanet:{},
-
-		},
+  return {
+    store: {
+      people: [],
+      character: [],
+      planets: [],
+      planet: [],
+      vehicles: [],
+      vehicle: [],
+      favorites: [],
+      isLoading: true,
+    },
 		actions: {
+
+			login: async (userEmail, userPassword) => {
+				try {
+				  let myToken = localStorage.getItem("myToken"); 
+				  const response = await fetch(
+					"https://emmanuelv22-shiny-cod-7qgpjvvpp7v3pwrx-3000.preview.app.github.dev/login",
+					{
+					  method: "POST",
+					  headers: {
+						"Content-Type": "application/json",
+						Authorization: `Bearer ${myToken}`, 
+					  },
+					  body: JSON.stringify({
+						email: userEmail,
+						password: userPassword,
+					  }),
+					}
+				  );
+		
+				  if (response.status === 200) {
+					const data = await response.json();
+					localStorage.setItem("myToken", data.access_token);
+					return true;
+				  } else if (response.status === 401) {
+					return false;
+				  }
+				} catch (err) {
+				  console.log(err);
+				  return false;
+				}
+			  },
+		
+			
+			  signup: async (userEmail, userPassword) => {
+				try {
+				  let myToken = localStorage.getItem("myToken"); 
+				  const response = await fetch(
+					"https://emmanuelv22-shiny-cod-7qgpjvvpp7v3pwrx-3000.preview.app.github.dev/signup",
+					{
+					  method: "POST",
+					  headers: {
+						"Content-Type": "application/json",
+						Authorization: `Bearer ${myToken}`, 
+					  },
+					  body: JSON.stringify({
+						email: userEmail,
+						password: userPassword,
+					  }),
+					}
+				  );
+		
+				  if (response.status === 200) {
+					console.log("Todo perfecto");
+				  } else if (response.status === 401) {
+					return false;
+				  }
+				} catch (err) {
+				  console.log(err);
+				  return false; 
+				}
+			  },
+			logout: () => {
+				let token = localStorage.getItem("myToken")
+				return	token != null ? true : false
+			},
+	
 			
 			getDataPeople: async () => {
 				try{
 					const store = getStore()
-					const result = await fetch("https://www.swapi.tech/api/people?page=1&limit=20")
+					const result = await fetch("https://www.swapi.tech/api/people/")
 					const data = await result.json()
 					
 					setStore({...store, people:data.results})
@@ -64,7 +126,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getDataPlanets: async () => {
 				try{
 					const store = getStore()
-					const result = await fetch("https://www.swapi.tech/api/planets?page=1&limit=20")
+					const result = await fetch("https://www.swapi.tech/api/planets/")
 					const data = await result.json()
 					
 					setStore({...store, planets:data.results})
@@ -104,9 +166,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getDataVehicles: async () => {
 				try{
 					const store = getStore()
-					const result = await fetch("https://www.swapi.tech/api/starships?page=1&limit=20")
+					const result = await fetch("https://www.swapi.tech/api/vehicles/")
 					const data = await result.json()
-					
 					setStore({...store, vehicles:data.results})
 					console.log("API respondió bien con primera lista de url", data)
 					const {mappingFetchVehicles} = getActions()
