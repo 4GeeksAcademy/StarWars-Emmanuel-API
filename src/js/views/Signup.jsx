@@ -19,7 +19,11 @@ const Signup = () => {
       navigate("/");
     }
   }
-
+  function redirectToLogin() {
+    setTimeout(() => {
+      window.location.href = '/login';
+    }, 1000); 
+  }
 
   return (
     <div>
@@ -51,7 +55,7 @@ const Signup = () => {
           id="exampleInputPassword1"
         />
       </div>
-      <button style={{ cursor: 'pointer' }} type="submit" className="btn">
+      <button onClick={redirectToLogin} style={{ cursor: 'pointer' }} type="submit" className="btn">
         <h5>Create account</h5>
       </button>
     </form>

@@ -57,7 +57,7 @@ export const Login = () => {
         <h5>Enter</h5>
       </button>
     </form>
-    <h5 className="mt-3" style={{ cursor: 'pointer' }}  onClick={handleRedirect}>You haven't account? Click Here to Register!</h5>
+    <h5 className="mt-3 card w-75 mx-auto" style={{ cursor: 'pointer' }}  onClick={handleRedirect}>You haven't account? Click Here to Register!</h5>
     </div>
   );
 };
