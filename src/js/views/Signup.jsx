@@ -20,6 +20,8 @@ const Signup = () => {
     if (register) {
       //true
       navigate("/");
+    }else {
+      return alert("User already exist")
     }
   }
   function redirectToLogin() {
