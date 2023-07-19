@@ -1,6 +1,8 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
+import { Navbar } from "../component/navbar.js";
+import { Footer } from "../component/footer.js";
 
 export const VehicleDetails = () => {
 	
@@ -21,7 +23,7 @@ export const VehicleDetails = () => {
 
 		<div className="text-center mx-auto ">
 
-
+<Navbar />
 			<h1>StarShip Details</h1>
 
 			{JSON.stringify(store.oneVehicle) !== '{}' ?(
@@ -63,6 +65,8 @@ export const VehicleDetails = () => {
 			):(
 				<h1>No only one selected</h1>
 			)}
+			    <Footer />
+
 		</div>
 	)
 

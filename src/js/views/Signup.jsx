@@ -1,6 +1,9 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
+import { Navbar } from "../component/navbar.js";
+import { Footer } from "../component/footer.js";
+
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -26,10 +29,11 @@ const Signup = () => {
   }
 
   return (
-    <div>
-    <h1 style={{ fontSize: '2rem' }}>Show the force inside you</h1>
+    <div className="back">
+      <Navbar />
+    <h1 style={{ fontSize: '2rem' }}>Welcome to the dark side</h1>
     <form
-      className="card w-75 mx-auto"
+      className="card w-75 mx-auto mb-5"
       onSubmit={handleSubmit}
     >
       <div className="m-3 ">
@@ -59,6 +63,8 @@ const Signup = () => {
         <h5>Create account</h5>
       </button>
     </form>
+    <Footer />
+
     </div>
   );
 };

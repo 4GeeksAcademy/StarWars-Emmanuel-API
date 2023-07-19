@@ -1,8 +1,9 @@
 body {
-    background-image: url(https://www.wallpapers13.com/wp-content/uploads/2016/10/Star-Wars-Gameplay-Battle-of-Hoth-Battlefront-StormTrooper-Desktop-HD-Wallpaper-for-Mobile-phones-Tablet-and-PC-3840x2160-1920x1080.jpg);
+    background-image: url(https://media.istockphoto.com/id/859445444/es/foto/hermoso-amanecer-en-el-fondo-de-hurac%C3%A1n.jpg?s=612x612&w=0&k=20&c=LLdNQCmN3gC2UTHQdV2sY2Di7JPmELaCWZm0Ot5v3pc=);
     background-repeat: no-repeat;
     background-size: cover;
     height: 100%;
+    width: 100%;
     background-attachment: fixed;
     color: white;
     z-index: -1;
@@ -11,6 +12,29 @@ body {
     font-size: 12px;
     font-weight: bold;
 }
+
+.back{
+    background-image: url(https://i.gifer.com/DoOV.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    color: white;
+    z-index: -100;
+    text-align: center;
+    
+}
+
+.loader {
+    background-image: url(https://media.tenor.com/lVZmvL0B1rwAAAAd/eats-baby.gif);
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    z-index: 5;
+    width: 100vw;
+    height: 100vh;
+
+  }
 
 .placeholder-image {
     background-image: url(https://c4.wallpaperflare.com/wallpaper/670/495/775/tv-show-the-mandalorian-baby-yoda-star-wars-the-mandalorian-tv-show-hd-wallpaper-preview.jpg);

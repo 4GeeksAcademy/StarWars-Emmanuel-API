@@ -1,6 +1,8 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
+import { Navbar } from "../component/navbar.js";
+import { Footer } from "../component/footer.js";
 
 export const PlanetDetails = () => {
 	
@@ -17,7 +19,7 @@ export const PlanetDetails = () => {
 	return (
 
 		<div className="text-center mx-auto ">
-
+			<Navbar />
 
 			<h1>Planet Details</h1>
 
@@ -59,6 +61,8 @@ export const PlanetDetails = () => {
 			):(
 				<h1>No only one selected</h1>
 			)}
+			    <Footer />
+
 		</div>
 	)
 

@@ -8,8 +8,8 @@ import PeopleDetails from "./views/PeopleDetails.jsx";
 import PlanetDetails from "./views/PlanetDetails.jsx";
 import VehicleDetails from "./views/VehicleDetails.jsx";
 import injectContext from "./store/appContext";
-import { Navbar } from "./component/navbar";
-import { Footer } from "./component/footer";
+// import { Navbar } from "./component/navbar";
+// import { Footer } from "./component/footer";
 import Login from "./views/Login.jsx";
 import Signup from "./views/Signup.jsx";
 
@@ -21,7 +21,7 @@ const Layout = () => {
 		<div>
 			<BrowserRouter basename={basename}>
 				<ScrollToTop>
-					<Navbar />
+					
 					<Routes>
 						<Route path="/" element={<Login />} />
 						<Route path="/home" element={<Home />} />
@@ -32,7 +32,7 @@ const Layout = () => {
 						<Route path="/starships-details" element={<VehicleDetails />} />
 						<Route path="*" element={<Login />} />
 					</Routes>
-					<Footer />
+					
 				</ScrollToTop>
 			</BrowserRouter>
 		</div>

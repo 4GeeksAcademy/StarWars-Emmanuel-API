@@ -1,8 +1,11 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect , useState } from "react";
 import People from "../component/People.jsx";
 import Planets from "../component/Planets.jsx";
 import Vehicles from "../component/Vehicles.jsx"
 import { Context } from '../store/appContext.js';
+import { Navbar } from "../component/navbar.js";
+import { Footer } from "../component/footer.js";
+
 
 
 import "../../styles/home.css";
@@ -10,13 +13,20 @@ import "../../styles/home.css";
 const Home = () => {
 
 	const { actions,store } = useContext(Context)
-	
+	const [isLoading, setIsLoading] = useState(true);
+
 	useEffect(()=>{
+		const delay = 3500; // 2 secondes
+
+    const timer = setTimeout(() => {
 		actions.getDataPeople();
 		actions.getDataPlanets();
 		actions.getDataVehicles();
-		
-	  },[]);
+		setIsLoading(false);
+    }, delay);
+
+    return () => clearTimeout(timer); 
+  }, []);
 
 
 
@@ -38,6 +48,16 @@ const Home = () => {
 
 	
 	return(
+
+		<>
+		
+		{isLoading ? (
+		  <div className="loader">
+			<h1 className="mx-auto mt-5">LOADING...</h1>
+		  </div>
+		) : (
+		  <>
+		  <Navbar />
 	<div className="text-center mx-auto ">
 
 
@@ -101,6 +121,12 @@ const Home = () => {
 		</div>
 		
 	</div>
-);};
+	<Footer />
+
+	</>
+      )}
+    </>
+  );
+};
 
 export default Home;
