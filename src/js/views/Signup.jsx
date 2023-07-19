@@ -59,8 +59,8 @@ const Signup = () => {
           id="exampleInputPassword1"
         />
       </div>
-      <button onClick={redirectToLogin} style={{ cursor: 'pointer' }} type="submit" className="btn">
-        <h5>Create account</h5>
+      <button onClick={redirectToLogin} style={{ cursor: 'pointer' }} type="submit" className="btn btn-warning">
+        Create account
       </button>
     </form>
     <Footer />

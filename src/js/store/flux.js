@@ -1,4 +1,6 @@
 const getState = ({ getStore, getActions, setStore }) => {
+	const API_URL =
+    "https://emmanuelv22-shiny-cod-7qgpjvvpp7v3pwrx-3000.preview.app.github.dev/";
   return {
     store: {
       people: [],
@@ -9,62 +11,34 @@ const getState = ({ getStore, getActions, setStore }) => {
       vehicle: [],
       favorites: [],
       isLoading: true,
+	  
     },
 		actions: {
 
 			login: async (userEmail, userPassword) => {
+				
 				try {
-				  let myToken = localStorage.getItem("myToken"); 
-				  const response = await fetch(
-					"https://emmanuelv22-shiny-cod-7qgpjvvpp7v3pwrx-3000.preview.app.github.dev/login",
-					{
-					  method: "POST",
-					  headers: {
-						"Content-Type": "application/json",
-						Authorization: `Bearer ${myToken}`, 
-					  },
-					  body: JSON.stringify({
-						email: userEmail,
-						password: userPassword,
-					  }),
-					}
-				  );
+				  
+				  const response = await fetch(API_URL + "/login", {
+					method: "POST",
+					headers: {
+					  "Content-Type": "application/json", 
+					},
+					body: JSON.stringify({
+					  email: userEmail,
+					  password: userPassword,
+					}),
+				  });
 		
-				  if (response.status === 200) {
+				  if (response.ok) {
+					
 					const data = await response.json();
+					
 					localStorage.setItem("myToken", data.access_token);
-					return true;
+					setStore({ user: data.user });
+					return data;
 				  } else if (response.status === 401) {
-					return false;
-				  }
-				} catch (err) {
-				  console.log(err);
-				  return false;
-				}
-			  },
-		
-			
-			  signup: async (userEmail, userPassword) => {
-				try {
-				  let myToken = localStorage.getItem("myToken"); 
-				  const response = await fetch(
-					"https://emmanuelv22-shiny-cod-7qgpjvvpp7v3pwrx-3000.preview.app.github.dev/signup",
-					{
-					  method: "POST",
-					  headers: {
-						"Content-Type": "application/json",
-						Authorization: `Bearer ${myToken}`, 
-					  },
-					  body: JSON.stringify({
-						email: userEmail,
-						password: userPassword,
-					  }),
-					}
-				  );
-		
-				  if (response.status === 200) {
-					console.log("Todo perfecto");
-				  } else if (response.status === 401) {
+					
 					return false;
 				  }
 				} catch (err) {
@@ -72,10 +46,57 @@ const getState = ({ getStore, getActions, setStore }) => {
 				  return false; 
 				}
 			  },
-			logout: () => {
-				let token = localStorage.getItem("myToken")
-				return	token != null ? true : false
-			},
+		
+			  // Fonction d'inscription
+			  signup: async (userEmail, userPassword) => {
+				try { // Utiliser la clé "myToken" au lieu de "token"
+				  const response = await fetch(API_URL + "/signup", {
+					method: "POST",
+					headers: {
+					  "Content-Type": "application/json", 
+					},
+					body: JSON.stringify({
+					  email: userEmail,
+					  password: userPassword,
+					}),
+				  });
+		
+				  if (response.ok) {
+					console.log(response);
+					console.log("Todo perfecto");
+					return response
+				  } else if (response.status === 401) {
+					
+					return false;
+				  }
+				} catch (err) {
+				  console.log(err);
+				  return false; 
+				}
+			  },
+			  logout: () => {
+				let token = localStorage.getItem("myToken");
+				return token != null ? true : false;
+			  },
+			  isAuth: async () => {
+				try {
+				  let token = localStorage.getItem("myToken");
+				  const settings = {
+					method: "GET",
+					headers: {
+					  "Content-Type": "application/json",
+					  Authorization: "Bearer" + token,
+					},
+				  };
+		
+				  const request = await fetch(API_URL + "/private", settings);
+				  const json = await request.json();
+				  const data = json;
+				  setStore({ user: data.user });
+				} catch (error) {
+				  console.log("No se pudo cargar: ", error);
+				}
+			  },
 	
 			
 			getDataPeople: async () => {

@@ -1,4 +1,5 @@
 import React, { useContext, useEffect , useState } from "react";
+import { useNavigate } from "react-router-dom";
 import People from "../component/People.jsx";
 import Planets from "../component/Planets.jsx";
 import Vehicles from "../component/Vehicles.jsx"
@@ -10,10 +11,28 @@ import { Footer } from "../component/footer.js";
 
 import "../../styles/home.css";
 
+
 const Home = () => {
 
 	const { actions,store } = useContext(Context)
 	const [isLoading, setIsLoading] = useState(true);
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	let navigate = useNavigate();
+
+	useEffect(() => {
+		const myToken = localStorage.getItem("myToken");
+		const userLoggedIn = !!myToken;
+		setIsLoggedIn(userLoggedIn);
+	  }, []);
+	
+	  function handleLogout() {
+		let isLogged = actions.logout();
+		if (isLogged) {
+		  localStorage.removeItem("myToken");
+		  setIsLoggedIn(false)
+		  navigate("/");
+		}
+	  }
 
 	useEffect(()=>{
 		const delay = 3500; // 2 secondes
@@ -48,18 +67,20 @@ const Home = () => {
 
 	
 	return(
-
-		<>
 		
-		{isLoading ? (
-		  <div className="loader">
-			<h1 className="mx-auto mt-5">LOADING...</h1>
-		  </div>
-		) : (
+		<>
+    {isLoading ? (
+      <div className="loader">
+        <h1 className="mx-auto pt-5 mt-5">LOADING...</h1>
+      </div>
+    ) : isLoggedIn ? (
 		  <>
 		  <Navbar />
+		  
 	<div className="text-center mx-auto ">
-
+	<button className="btn btn-warning bx-tada-hover " onClick={handleLogout}>
+              Log Out
+            </button>
 
 <div className="dropend">
 				<button className="btn btn-warning dropdown-toggle  m-5" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -122,11 +143,17 @@ const Home = () => {
 		
 	</div>
 	<Footer />
-
-	</>
-      )}
-    </>
-  );
-};
+      </>
+    ) : (
+		<>
+		<Navbar />
+      <h1>You need to login!</h1>
+	  </>
+    )}
+  </>
+);
+	}
 
 export default Home;
+
+
