@@ -81,7 +81,7 @@ const Home = () => {
 	<button className="btn btn-warning bx-tada-hover " onClick={handleLogout}>
               Log Out
             </button>
-			<h5>Welcome Back: {store.user.email}</h5>
+			<h1 style={{fontSize:"2rem"}} className="mx-auto m-3">Welcome Back: {store.user.name}</h1>
 
 <div className="dropend">
 				<button className="btn btn-warning dropdown-toggle  m-5" type="button" data-bs-toggle="dropdown" aria-expanded="false">

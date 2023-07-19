@@ -50,7 +50,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			  },
 		
 			  // Fonction d'inscription
-			  signup: async (userEmail, userPassword) => {
+			  signup: async (userEmail, userPassword , username , Name ,phone , adress) => {
 				try { // Utiliser la clé "myToken" au lieu de "token"
 				  const response = await fetch(API_URL + "/signup", {
 					method: "POST",
@@ -60,6 +60,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					body: JSON.stringify({
 					  email: userEmail,
 					  password: userPassword,
+					  username: username,
+					  name: Name,
+					  phone: phone,
+					  address: adress
 					}),
 				  });
 		

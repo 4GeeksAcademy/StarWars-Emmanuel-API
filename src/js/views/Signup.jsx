@@ -8,6 +8,11 @@ import { Footer } from "../component/footer.js";
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [adress, setAddress] = useState("");
+
   const { store, actions } = useContext(Context);
   let navigate = useNavigate();
 
@@ -15,7 +20,7 @@ const Signup = () => {
     e.preventDefault();
     // console.log(email,password);
     //    boolean   <=
-    let register = await actions.signup(email, password);
+    let register = await actions.signup(email, password , username , name ,phone , adress);
     console.log(register);
     if (register) {
       //true
@@ -61,7 +66,55 @@ const Signup = () => {
           id="exampleInputPassword1"
         />
       </div>
-      <button onClick={redirectToLogin} style={{ cursor: 'pointer' }} type="submit" className="btn btn-warning">
+      <div className="m-3 ">
+        <label htmlFor="exampleInputEmail1" className="form-label">
+          <h5>Name</h5>
+        </label>
+        <input
+          type="text"
+          onChange={(e) => setName(e.target.value)}
+          className="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+        />
+      </div>
+      <div className="m-3 ">
+        <label htmlFor="exampleInputEmail1" className="form-label">
+          <h5>Username</h5>
+        </label>
+        <input
+          type="text"
+          onChange={(e) => setUsername(e.target.value)}
+          className="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+        />
+      </div>
+      <div className="m-3 ">
+        <label htmlFor="exampleInputEmail1" className="form-label">
+          <h5>Phone</h5>
+        </label>
+        <input
+          type="text"
+          onChange={(e) => setPhone(e.target.value)}
+          className="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+        />
+      </div>
+      <div className="m-3 ">
+        <label htmlFor="exampleInputEmail1" className="form-label">
+          <h5>Address</h5>
+        </label>
+        <input
+          type="text"
+          onChange={(e) => setAddress(e.target.value)}
+          className="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+        />
+      </div>
+      <button onClick={redirectToLogin} style={{ cursor: 'pointer' }} type="submit" className="btn btn-warning  mx-auto m-3">
         Create account
       </button>
     </form>

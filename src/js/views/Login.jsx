@@ -60,7 +60,7 @@ export const Login = () => {
           id="exampleInputPassword1"
         />
       </div>
-      <button type="submit" className="btn btn-warning">
+      <button type="submit" className="btn btn-warning  mx-auto m-3">
         Enter
       </button>
     </form>
