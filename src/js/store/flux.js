@@ -3,6 +3,7 @@ const getState = ({ getStore, getActions, setStore }) => {
     "https://emmanuelv22-shiny-cod-7qgpjvvpp7v3pwrx-3000.preview.app.github.dev/";
   return {
     store: {
+		user:{},
       people: [],
       char: [],
       planets: [],
@@ -36,6 +37,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					
 					localStorage.setItem("myToken", data.access_token);
 					setStore({ user: data.user });
+					console.log(data.user);
 					return data;
 				  } else if (response.status === 401) {
 					
@@ -106,7 +108,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const data = await result.json()
 					
 					setStore({...store, people:data.results})
-					console.log("API respondió bien con primera lista de url", data)
+					// console.log("API respondió bien con primera lista de url", data)
 					const actions = getActions()
 					await actions.mappingFetch()
 				}catch(error){
@@ -132,7 +134,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const result = await fetch(url)
 					const data = await result.json()
 					setStore({ ...store,char: [...store.char, data] });
-					console.log("API respondió bien con obj personas", data)
+					// console.log("API respondió bien con obj personas", data)
 				}catch(error){
 					console.log("No se pudo recuperar obj personas ",error)
 				}
@@ -151,7 +153,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const data = await result.json()
 					
 					setStore({...store, planets:data.results})
-					console.log("API respondió bien con primera lista de url", data)
+					// console.log("API respondió bien con primera lista de url", data)
 					const {mappingFetchPlanets} = getActions()
 					await mappingFetchPlanets()
 				}catch(error){
@@ -177,7 +179,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const result = await fetch(url)
 					const data = await result.json()
 					setStore({ ...store,planet: [...store.planet, data] });
-					console.log("API respondió bien con obj personas", data)
+					// console.log("API respondió bien con obj personas", data)
 				}catch(error){
 					console.log("No se pudo recuperar obj personas ",error)
 				}
@@ -190,7 +192,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const result = await fetch("https://www.swapi.tech/api/vehicles/")
 					const data = await result.json()
 					setStore({...store, vehicles:data.results})
-					console.log("API respondió bien con primera lista de url", data)
+					// console.log("API respondió bien con primera lista de url", data)
 					const {mappingFetchVehicles} = getActions()
 					await mappingFetchVehicles()
 				}catch(error){
@@ -216,7 +218,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const result = await fetch(url)
 					const data = await result.json()
 					setStore({ ...store,vehicle: [...store.vehicle, data] });
-					console.log("API respondió bien con obj personas", data)
+					// console.log("API respondió bien con obj personas", data)
 				}catch(error){
 					console.log("No se pudo recuperar obj personas ",error)
 				}

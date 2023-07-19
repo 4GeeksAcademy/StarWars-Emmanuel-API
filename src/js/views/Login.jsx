@@ -14,10 +14,11 @@ export const Login = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     let isLogged = await actions.login(email, password);
-    console.log(isLogged);
+    
     if (isLogged) {
       //true
       navigate("/home");
+      
     }else {
       return alert("Incorrect user/password")
     }
